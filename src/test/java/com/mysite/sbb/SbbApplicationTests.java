@@ -18,7 +18,7 @@ class SbbApplicationTests {
     private QuestionRepository questionRepository;
 
     @Test
-    void save() {
+    void save_question() {
         Question q1 = new Question();
         q1.setSubject("sbb가 무엇인가요?");
         q1.setContent("sbb에 대해서 알고 싶습니다.");
@@ -33,7 +33,7 @@ class SbbApplicationTests {
     }
 
     @Test
-    void findAll() {
+    void findAll_question() {
         List<Question> all = this.questionRepository.findAll();
         assertEquals(2, all.size());
 
@@ -42,7 +42,7 @@ class SbbApplicationTests {
     }
 
     @Test
-    void findById() {
+    void findById_question() {
         Optional<Question> oq = this.questionRepository.findById(1);
         if(oq.isPresent()) {
             Question q = oq.get();
@@ -51,26 +51,26 @@ class SbbApplicationTests {
     }
 
     @Test
-    void findBySubject() {
+    void findBySubject_question() {
         Question q = this.questionRepository.findBySubject("sbb가 무엇인가요?");
         assertEquals(1, q.getId());
     }
 
     @Test
-    void findBySubjectAndContent() {
+    void findBySubjectAndContent_question() {
         Question q = this.questionRepository.findBySubjectAndContent("sbb가 무엇인가요?", "sbb에 대해서 알고 싶습니다.");
         assertEquals(1, q.getId());
     }
 
     @Test
-    void findBySubjectLike() {
+    void findBySubjectLike_question() {
         List<Question> qList = this.questionRepository.findBySubjectLike("sbb%");
         Question q = qList.get(0);
         assertEquals("sbb가 무엇인가요?", q.getSubject());
     }
 
     @Test
-    void update() {
+    void update_question() {
         Optional<Question> oq = this.questionRepository.findById(1);
         assertTrue(oq.isPresent());
         Question q = oq.get();
@@ -79,7 +79,7 @@ class SbbApplicationTests {
     }
 
     @Test
-    void delete() {
+    void delete_question() {
         assertEquals(2, this.questionRepository.count());
         Optional<Question> oq = this.questionRepository.findById(1);
         assertTrue(oq.isPresent());
