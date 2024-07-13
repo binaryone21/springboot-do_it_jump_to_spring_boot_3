@@ -20,6 +20,12 @@
                   </div>
               </div>
               <div class="my-3">
+                  <a href="javascript:void(0);" class="recomment btn btn-sm btn-outline-secondary"
+                     th:data-uri="@{|/question/vote/${question.id}|}">
+                      추천
+                      <span class="badge rounded-pill bg-success"
+                            th:text="${#lists.size(question.voter)}"></span>
+                  </a>
                   <a class="btn btn-sm btn-outline-secondary"
                      sec:authorize="isAuthenticated()"
                      th:href="@{|/question/modify/${question.id}|}"
@@ -89,6 +95,14 @@
         Array.from(delete_elements).forEach(function(element) {
             element.addEventListener('click', function() {
                 if(confirm("정말로 삭제하시곘습니까?")) {
+                    location.href = this.dataset.uri;
+                }
+            })
+        })
+        const recommend_elements = document.getElementsByClassName("recomment");
+        Array.from(recommend_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                if(confirm("정말로 추천하시겠습니까?")) {
                     location.href = this.dataset.uri;
                 }
             })
